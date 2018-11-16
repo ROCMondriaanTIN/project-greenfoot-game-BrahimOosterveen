@@ -100,7 +100,16 @@ public class Hero extends Mover {
 
         for (Actor enemy : getIntersectingObjects(Enemy.class)) {
             if (enemy != null) {
-                getWorld().removeObject(this);
+                //getWorld().removeObject(this);
+               setLocation(400, 1100);
+                break;
+            }
+        }
+        
+        for (Actor liquidWater : getIntersectingObjects(TileExtended.class)) {
+            TileExtended tile = (TileExtended) liquidWater;
+            if (tile != null && tile.type == "water") {
+                setLocation(250, 1100);
                 break;
             }
         }
@@ -135,7 +144,8 @@ public class Hero extends Mover {
     public boolean onGround()
     {
         Actor under = getOneObjectAtOffset (0, getHeight ()/2, Tile.class);
-        return under != null; 
+        Tile tile = (Tile) under;
+        return tile != null && tile.isSolid == true; 
     }
     
         
