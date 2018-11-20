@@ -38,18 +38,19 @@ public class Hero extends Mover {
     private final GreenfootImage LMwalk10 = new GreenfootImage("p1inv_walk10.png");
     private final GreenfootImage LMwalk11 = new GreenfootImage("p1inv_walk01.png");
  
+    int level;
     private int speed = 3;
     private int frame;
     private boolean lopen;
     private boolean Kijkenrechts;
     private boolean isKeyPressed;
-    public Hero() {
+    public Hero(int level) {
         super();
         gravity = 9.8;
         acc = 0.6;
         drag = 0.8;
         setImage("p123.png");
-        
+        this.level = level;
         setImage(RMidle);
         lopen = false;
         Kijkenrechts = true;
@@ -109,7 +110,7 @@ public class Hero extends Mover {
         for (Actor liquidWater : getIntersectingObjects(TileExtended.class)) {
             TileExtended tile = (TileExtended) liquidWater;
             if (tile != null && tile.type == "water") {
-                setLocation(250, 1100);
+                Greenfoot.setWorld(new Gameover(level));
                 break;
             }
         }
