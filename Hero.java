@@ -10,6 +10,7 @@ public class Hero extends Mover {
     private final double gravity;
     private final double acc;
     private final double drag;
+    
     private final GreenfootImage RMidle= new GreenfootImage("p123.png");
     private final GreenfootImage RMjump= new GreenfootImage("p1_jump.png");
     private final GreenfootImage RMwalk1= new GreenfootImage("p1_walk01.png");
@@ -37,13 +38,18 @@ public class Hero extends Mover {
     private final GreenfootImage LMwalk9 = new GreenfootImage("p1inv_walk09.png");
     private final GreenfootImage LMwalk10 = new GreenfootImage("p1inv_walk10.png");
     private final GreenfootImage LMwalk11 = new GreenfootImage("p1inv_walk01.png");
- 
     int level;
     private int speed = 3;
     private int frame;
     private boolean lopen;
     private boolean Kijkenrechts;
     private boolean isKeyPressed;
+    private boolean touchedKey = false;
+    private boolean YellowKey = false;
+    public int Ster = 0;
+    
+
+    
     public Hero(int level) {
         super();
         gravity = 9.8;
@@ -82,15 +88,15 @@ public class Hero extends Mover {
         LMwalk9.scale(70,100);
         LMwalk10.scale(70,100);
         LMwalk11.scale(70,100);
+        
     }
 
     @Override
     public void act() {
         handleInput();
-        {
+        
         checkKeys();
         onGround();
-        }
         
         velocityX *= drag;
         velocityY += acc;
@@ -98,11 +104,12 @@ public class Hero extends Mover {
             velocityY = gravity;
         }
         applyVelocity();
+        //slotKey();
+        //removeLock();
 
         for (Actor enemy : getIntersectingObjects(Enemy.class)) {
             if (enemy != null) {
-                //getWorld().removeObject(this);
-               setLocation(400, 1100);
+                Greenfoot.setWorld(new Gameover(level));
                 break;
             }
         }
@@ -114,8 +121,18 @@ public class Hero extends Mover {
                 break;
             }
         }
+        
+        {
+        if (!touchedKey)
+        touchedKey = getOneIntersectingObject(YellowKey.class) != null;
+        if (getOneIntersectingObject(Deur.class) != null && touchedKey)
+         Greenfoot.setWorld(new LevelSelect());
+        }
+
     }
-            public void checkKeys()
+     
+ 
+    public void checkKeys()
     {
         isKeyPressed = false;
         if (Greenfoot.isKeyDown("d") && Greenfoot.isKeyDown("a"))
@@ -149,13 +166,6 @@ public class Hero extends Mover {
         return tile != null && tile.isSolid == true; 
     }
     
-        
-    
-    
-    
-    
-    
-
     
     public void handleInput() {
         if (Greenfoot.isKeyDown("space") && onGround() == true) {
@@ -296,12 +306,39 @@ public class Hero extends Mover {
             setImage (RMidle);
         else
             setImage (LMidle);
+     }
+     
+    public void Deur()
+      {
+          for (Actor deur : getIntersectingObjects(Deur.class))
+          {
+              if((YellowKey==true)  && (Ster>=2));
+              {
+                  if(Deur.class != null){
+                      
+                      {
+                       Greenfoot.setWorld(new Lvl2());
+                       String actieveWereld = "Level2";
+                       return;
+                      }
+                }
         }
+      }
     }
-    
-
+}
+    /*public boolean slotKey()
+    {
+        Actor Key = getOneIntersectingObjects(Key.class);
+        if(isTouching(Key.class))
+        {
+            removeTouching(Key.class);
+            Key = true;
+        }
+        return Key;
+    }
+}
         
-    
+    */
 
 
 

@@ -9,10 +9,6 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class LevelSelect extends World
 {
 
-    /**
-     * Constructor for objects of class LevelSelect.
-     * 
-     */
     public LevelSelect()
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
@@ -21,17 +17,13 @@ public class LevelSelect extends World
         prepare();
     }
 
-    public void act(){
-
-        {if (Greenfoot.isKeyDown("1")) 
+    public void act()
+    {
+        if (Greenfoot.isKeyDown("1")) {
                 Greenfoot.setWorld(new MyWorld()); 
         }
     }
-
-    /**
-     * Prepare the world for the start of the program.
-     * That is: create the initial objects and add them to the world.
-     */
+    
     private void prepare()
     {
         Level1 level1 = new Level1();

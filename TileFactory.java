@@ -249,19 +249,19 @@ public class TileFactory {
              break;
           case 58:
              tile = new Tile("door_closedMid.png", TileEngine.TILE_WIDTH, TileEngine.TILE_HEIGHT);
-             tile.isSolid = true;
+             tile.isSolid = false;
              break;
           case 59:
              tile = new Tile("door_closedTop.png", TileEngine.TILE_WIDTH, TileEngine.TILE_HEIGHT);
-             tile.isSolid = true;
+             tile.isSolid = false;
              break;
           case 60:
              tile = new Tile("door_openMid.png", TileEngine.TILE_WIDTH, TileEngine.TILE_HEIGHT);
-             tile.isSolid = true;
+             tile.isSolid = false;
              break;
           case 61:
              tile = new Tile("door_openTop.png", TileEngine.TILE_WIDTH, TileEngine.TILE_HEIGHT);
-             tile.isSolid = true;
+             tile.isSolid = false;
              break;
           case 62:
              tile = new Tile("fence.png", TileEngine.TILE_WIDTH, TileEngine.TILE_HEIGHT);
@@ -689,15 +689,15 @@ public class TileFactory {
              break;
           case 168:
              tile = new Tile("tochLit.png", TileEngine.TILE_WIDTH, TileEngine.TILE_HEIGHT);
-             tile.isSolid = true;
+             tile.isSolid = false;
              break;
           case 169:
              tile = new Tile("tochLit2.png", TileEngine.TILE_WIDTH, TileEngine.TILE_HEIGHT);
-             tile.isSolid = true;
+             tile.isSolid = false;
              break;
           case 170:
              tile = new Tile("torch.png", TileEngine.TILE_WIDTH, TileEngine.TILE_HEIGHT);
-             tile.isSolid = true;
+             tile.isSolid = false;
              break;
           case 171:
              tile = new Tile("window.png", TileEngine.TILE_WIDTH, TileEngine.TILE_HEIGHT);
@@ -913,7 +913,7 @@ public class TileFactory {
              break;
           case 224:
                tile = new Tile("star.png", TileEngine.TILE_WIDTH, TileEngine.TILE_HEIGHT);
-             tile.isSolid = true;
+             tile.isSolid = false;
              break;
           case 225:
                tile = new Tile("switchLeft.png", TileEngine.TILE_WIDTH, TileEngine.TILE_HEIGHT);

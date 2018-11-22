@@ -3,17 +3,12 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 /**
  * Write a description of class Gameover here.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author (Brahim Oosterveen) 
+ * @version (22-11-2018)
  */
 public class Gameover extends World
 {
-
-    int level;
-    /**
-     * Constructor for objects of class Gameover.
-     * 
-     */
+     int level;
     public Gameover(int lvl)
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
@@ -22,10 +17,6 @@ public class Gameover extends World
         prepare();
     }
 
-    /**
-     * Prepare the world for the start of the program.
-     * That is: create the initial objects and add them to the world.
-     */
     private void prepare()
     {
         No no = new No();
