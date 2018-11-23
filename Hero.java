@@ -10,21 +10,21 @@ public class Hero extends Mover {
     private final double gravity;
     private final double acc;
     private final double drag;
-    
-    private final GreenfootImage RMidle= new GreenfootImage("p123.png");
-    private final GreenfootImage RMjump= new GreenfootImage("p1_jump.png");
-    private final GreenfootImage RMwalk1= new GreenfootImage("p1_walk01.png");
-    private final GreenfootImage RMwalk2= new GreenfootImage("p1_walk02.png");
-    private final GreenfootImage RMwalk3= new GreenfootImage("p1_walk03.png");
-    private final GreenfootImage RMwalk4= new GreenfootImage("p1_walk04.png");
-    private final GreenfootImage RMwalk5= new GreenfootImage("p1_walk05.png");
-    private final GreenfootImage RMwalk6= new GreenfootImage("p1_walk06.png");
-    private final GreenfootImage RMwalk7= new GreenfootImage("p1_walk07.png");
-    private final GreenfootImage RMwalk8= new GreenfootImage("p1_walk08.png");
-    private final GreenfootImage RMwalk9= new GreenfootImage("p1_walk09.png");
-    private final GreenfootImage RMwalk10= new GreenfootImage("p1_walk10.png");
-    private final GreenfootImage RMwalk11= new GreenfootImage("p1_walk11.png");
- 
+
+    private final GreenfootImage RMidle = new GreenfootImage("p123.png");
+    private final GreenfootImage RMjump = new GreenfootImage("p1_jump.png");
+    private final GreenfootImage RMwalk1 = new GreenfootImage("p1_walk01.png");
+    private final GreenfootImage RMwalk2 = new GreenfootImage("p1_walk02.png");
+    private final GreenfootImage RMwalk3 = new GreenfootImage("p1_walk03.png");
+    private final GreenfootImage RMwalk4 = new GreenfootImage("p1_walk04.png");
+    private final GreenfootImage RMwalk5 = new GreenfootImage("p1_walk05.png");
+    private final GreenfootImage RMwalk6 = new GreenfootImage("p1_walk06.png");
+    private final GreenfootImage RMwalk7 = new GreenfootImage("p1_walk07.png");
+    private final GreenfootImage RMwalk8 = new GreenfootImage("p1_walk08.png");
+    private final GreenfootImage RMwalk9 = new GreenfootImage("p1_walk09.png");
+    private final GreenfootImage RMwalk10 = new GreenfootImage("p1_walk10.png");
+    private final GreenfootImage RMwalk11 = new GreenfootImage("p1_walk11.png");
+
     private final GreenfootImage LMidle = new GreenfootImage("p1inv.png");
     private final GreenfootImage LMjump = new GreenfootImage(RMjump);
     private final GreenfootImage LMwalk1 = new GreenfootImage("p1inv_walk01.png");
@@ -46,10 +46,12 @@ public class Hero extends Mover {
     private boolean isKeyPressed;
     private boolean touchedKey = false;
     private boolean YellowKey = false;
+    private boolean Bluekey = false;
     public int Ster = 0;
+    private int velocity = 0;
+    
     
 
-    
     public Hero(int level) {
         super();
         gravity = 9.8;
@@ -60,44 +62,51 @@ public class Hero extends Mover {
         setImage(RMidle);
         lopen = false;
         Kijkenrechts = true;
- 
-        RMidle.scale(70,100);
-        RMjump.scale(70,100);
-        RMwalk1.scale(70,100);
-        RMwalk2.scale(70,100);
-        RMwalk3.scale(70,100);
-        RMwalk4.scale(70,100);
-        RMwalk5.scale(70,100);
-        RMwalk6.scale(70,100);
-        RMwalk7.scale(70,100);
-        RMwalk8.scale(70,100);
-        RMwalk9.scale(70,100);
-        RMwalk10.scale(70,100);
-        RMwalk11.scale(70,100);
- 
-        LMidle.scale(70,100);
-        LMjump.scale(70,100);
-        LMwalk1.scale(70,100);
-        LMwalk2.scale(70,100);
-        LMwalk3.scale(70,100);
-        LMwalk4.scale(70,100);
-        LMwalk5.scale(70,100);
-        LMwalk6.scale(70,100);
-        LMwalk7.scale(70,100);
-        LMwalk8.scale(70,100);
-        LMwalk9.scale(70,100);
-        LMwalk10.scale(70,100);
-        LMwalk11.scale(70,100);
-        
+
+        RMidle.scale(70, 100);
+        RMjump.scale(70, 100);
+        RMwalk1.scale(70, 100);
+        RMwalk2.scale(70, 100);
+        RMwalk3.scale(70, 100);
+        RMwalk4.scale(70, 100);
+        RMwalk5.scale(70, 100);
+        RMwalk6.scale(70, 100);
+        RMwalk7.scale(70, 100);
+        RMwalk8.scale(70, 100);
+        RMwalk9.scale(70, 100);
+        RMwalk10.scale(70, 100);
+        RMwalk11.scale(70, 100);
+
+        LMidle.scale(70, 100);
+        LMjump.scale(70, 100);
+        LMwalk1.scale(70, 100);
+        LMwalk2.scale(70, 100);
+        LMwalk3.scale(70, 100);
+        LMwalk4.scale(70, 100);
+        LMwalk5.scale(70, 100);
+        LMwalk6.scale(70, 100);
+        LMwalk7.scale(70, 100);
+        LMwalk8.scale(70, 100);
+        LMwalk9.scale(70, 100);
+        LMwalk10.scale(70, 100);
+        LMwalk11.scale(70, 100);
+
     }
 
     @Override
     public void act() {
+        getSter();
+        Deur();
+        yellowKey();
+        blueKey();
+        Lock();
         handleInput();
-        
+
         checkKeys();
         onGround();
+        //removeLock();
         
+
         velocityX *= drag;
         velocityY += acc;
         if (velocityY > gravity) {
@@ -113,7 +122,7 @@ public class Hero extends Mover {
                 break;
             }
         }
-        
+
         for (Actor liquidWater : getIntersectingObjects(TileExtended.class)) {
             TileExtended tile = (TileExtended) liquidWater;
             if (tile != null && tile.type == "water") {
@@ -121,52 +130,53 @@ public class Hero extends Mover {
                 break;
             }
         }
-        
-        {
-        if (!touchedKey)
-        touchedKey = getOneIntersectingObject(YellowKey.class) != null;
-        if (getOneIntersectingObject(Deur.class) != null && touchedKey)
-         Greenfoot.setWorld(new LevelSelect());
-        }
 
     }
-     
- 
-    public void checkKeys()
-    {
+    
+    public void getSter() {
+        if(isTouching(Ster.class)) {
+            Ster ++;
+            removeTouching(Ster.class);
+        }
+    }
+    public void yellowKey() {
+        if(isTouching(YellowKey.class)) {
+            YellowKey = true;
+            removeTouching(YellowKey.class);
+        }
+    }
+    public void blueKey() {
+        if(isTouching(Bluekey.class)) {
+            Bluekey = true;
+            removeTouching(Bluekey.class);
+        }
+    }
+
+    public void checkKeys() {
         isKeyPressed = false;
-        if (Greenfoot.isKeyDown("d") && Greenfoot.isKeyDown("a"))
-        {
+        if (Greenfoot.isKeyDown("d") && Greenfoot.isKeyDown("a")) {
             stoplopen();
             isKeyPressed = true;
-        }
-        else if (Greenfoot.isKeyDown("d"))
-        {
+        } else if (Greenfoot.isKeyDown("d")) {
             walkRight();
-            setLocation (getX()+speed, getY());
+            setLocation(getX() + speed, getY());
             isKeyPressed = true;
-        }
-        else if (Greenfoot.isKeyDown("a"))
-        {
+        } else if (Greenfoot.isKeyDown("a")) {
             walkLeft();
-            setLocation (getX()-speed, getY());
+            setLocation(getX() - speed, getY());
             isKeyPressed = true;
         }
-        if (!(isKeyPressed))
-        {
+        if (!(isKeyPressed)) {
             stoplopen();
         }
     }
-    
-    
-    public boolean onGround()
-    {
-        Actor under = getOneObjectAtOffset (0, getHeight ()/2, Tile.class);
+
+    public boolean onGround() {
+        Actor under = getOneObjectAtOffset(0, getHeight() / 2, Tile.class);
         Tile tile = (Tile) under;
-        return tile != null && tile.isSolid == true; 
+        return tile != null && tile.isSolid == true;
     }
-    
-    
+
     public void handleInput() {
         if (Greenfoot.isKeyDown("space") && onGround() == true) {
             velocityY = -15;
@@ -185,160 +195,105 @@ public class Hero extends Mover {
     public int getHeight() {
         return getImage().getHeight();
     }
- 
-    public void walkRight()
-    {
+
+    public void walkRight() {
         lopen = true;
         Kijkenrechts = true;
-        frame ++;
-        if(frame==1)
-        {
+        frame++;
+        if (frame == 1) {
             setImage(RMidle);
-        }
-        else if(frame==2)
-        {
+        } else if (frame == 2) {
             setImage(RMwalk1);
-        }
-        else if(frame==3)
-        {
+        } else if (frame == 3) {
             setImage(RMwalk2);
-        }
-        else if(frame==4)
-        {
+        } else if (frame == 4) {
             setImage(RMwalk3);
-        }
-        else if(frame==5)
-        {
+        } else if (frame == 5) {
             setImage(RMwalk4);
-        }
-        else if(frame==6)
-        {
+        } else if (frame == 6) {
             setImage(RMwalk5);
-        }
-        else if(frame==7)
-        {
+        } else if (frame == 7) {
             setImage(RMwalk6);
-        }
-        else if(frame==8)
-        {
+        } else if (frame == 8) {
             setImage(RMwalk7);
-        }
-        else if(frame==9)
-        {
+        } else if (frame == 9) {
             setImage(RMwalk8);
-        }
-        else if(frame==10)
-        {
+        } else if (frame == 10) {
             setImage(RMwalk9);
-        }
-        else if(frame==11)
-        {
+        } else if (frame == 11) {
             setImage(RMwalk10);
-        }
-        else if (frame==12){
+        } else if (frame == 12) {
             setImage(RMwalk11);
             frame = 1;
             return;
         }
     }
-    
-    public void walkLeft()
-    {
+
+    public void walkLeft() {
         lopen = true;
         Kijkenrechts = false;
-        frame ++;
-        if(frame==1)
-        {
+        frame++;
+        if (frame == 1) {
             setImage(LMidle);
-        }
-        else if(frame==2)
-        {
+        } else if (frame == 2) {
             setImage(LMwalk1);
-        }
-        else if(frame==3)
-        {
+        } else if (frame == 3) {
             setImage(LMwalk2);
-        }
-        else if(frame==4)
-        {
+        } else if (frame == 4) {
             setImage(LMwalk3);
-        }
-        else if(frame==5)
-        {
+        } else if (frame == 5) {
             setImage(LMwalk4);
-        }
-       else if(frame==6)
-        {
+        } else if (frame == 6) {
             setImage(LMwalk5);
-        }
-        else if(frame==7)
-        {
+        } else if (frame == 7) {
             setImage(LMwalk6);
-        }
-        else if(frame==8)
-        {
+        } else if (frame == 8) {
             setImage(LMwalk7);
-        }
-        else if(frame==9)
-        {
+        } else if (frame == 9) {
             setImage(LMwalk8);
-        }
-        else if(frame==10)
-        {
+        } else if (frame == 10) {
             setImage(LMwalk9);
-        }
-        else if(frame==11)
-        {
+        } else if (frame == 11) {
             setImage(LMwalk10);
-        }
-        else if (frame==12)
-        {
+        } else if (frame == 12) {
             setImage(LMwalk11);
             frame = 1;
             return;
         }
     }
- 
-    public void stoplopen()
-    {
-        lopen = false;
-        if (Kijkenrechts)
-            setImage (RMidle);
-        else
-            setImage (LMidle);
-     }
-     
-    public void Deur()
-      {
-          for (Actor deur : getIntersectingObjects(Deur.class))
-          {
-              if((YellowKey==true)  && (Ster>=2));
-              {
-                  if(Deur.class != null){
-                      
-                      {
-                       Greenfoot.setWorld(new Lvl2());
-                       String actieveWereld = "Level2";
-                       return;
-                      }
-                }
-        }
-      }
-    }
-}
-    /*public boolean slotKey()
-    {
-        Actor Key = getOneIntersectingObjects(Key.class);
-        if(isTouching(Key.class))
-        {
-            removeTouching(Key.class);
-            Key = true;
-        }
-        return Key;
-    }
-}
-        
-    */
 
+    public void stoplopen() {
+        lopen = false;
+        if (Kijkenrechts) {
+            setImage(RMidle);
+        } else {
+            setImage(LMidle);
+        }
+    }
+    public void Jumpani(){
+       velocity = 0;
+       if (Kijkenrechts) {
+            setImage(RMjump);
+        } else {
+            setImage(LMjump);
+       
+     }
+    }
+
+    public void Deur() {
+        if (isTouching(Deur.class) && YellowKey && Ster >= 2) {
+            Greenfoot.setWorld(new Lvl2());
+        }
+    }
+    public void Lock(){
+    
+           
+           if (isTouching(Bluelock.class) && Bluekey) {
+            removeTouching(Bluelock.class);
+            //world.removeObject(this);
+        }
+        
+    }
+}
 
 
