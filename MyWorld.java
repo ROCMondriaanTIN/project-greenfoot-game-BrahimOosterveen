@@ -110,8 +110,6 @@ public class MyWorld extends World {
         removeObject(bluelock);
         removeObject(bluekey2);
         removeObject(bluekey);
-        Bluekeyhud bluekeyhud = new Bluekeyhud();
-        addObject(bluekeyhud,46,756);
-        removeObject(bluekeyhud);
+      
     }
 }

@@ -10,34 +10,6 @@ public class Hero extends Mover {
     private final double gravity;
     private final double acc;
     private final double drag;
-
-    /*private final GreenfootImage RMidle = new GreenfootImage("p123.png");
-    private final GreenfootImage RMjump = new GreenfootImage("p1_jump.png");
-    private final GreenfootImage RMwalk1 = new GreenfootImage("p1_walk01.png");
-    private final GreenfootImage RMwalk2 = new GreenfootImage("p1_walk02.png");
-    private final GreenfootImage RMwalk3 = new GreenfootImage("p1_walk03.png");
-    private final GreenfootImage RMwalk4 = new GreenfootImage("p1_walk04.png");
-    private final GreenfootImage RMwalk5 = new GreenfootImage("p1_walk05.png");
-    private final GreenfootImage RMwalk6 = new GreenfootImage("p1_walk06.png");
-    private final GreenfootImage RMwalk7 = new GreenfootImage("p1_walk07.png");
-    private final GreenfootImage RMwalk8 = new GreenfootImage("p1_walk08.png");
-    private final GreenfootImage RMwalk9 = new GreenfootImage("p1_walk09.png");
-    private final GreenfootImage RMwalk10 = new GreenfootImage("p1_walk10.png");
-    private final GreenfootImage RMwalk11 = new GreenfootImage("p1_walk11.png");
-
-    private final GreenfootImage LMidle = new GreenfootImage("p1inv.png");
-    private final GreenfootImage LMjump = new GreenfootImage(RMjump);
-    private final GreenfootImage LMwalk1 = new GreenfootImage("p1inv_walk01.png");
-    private final GreenfootImage LMwalk2 = new GreenfootImage("p1inv_walk02.png");
-    private final GreenfootImage LMwalk3 = new GreenfootImage("p1inv_walk03.png");
-    private final GreenfootImage LMwalk4 = new GreenfootImage("p1inv_walk04.png");
-    private final GreenfootImage LMwalk5 = new GreenfootImage("p1inv_walk05.png");
-    private final GreenfootImage LMwalk6 = new GreenfootImage("p1inv_walk06.png");
-    private final GreenfootImage LMwalk7 = new GreenfootImage("p1inv_walk07.png");
-    private final GreenfootImage LMwalk8 = new GreenfootImage("p1inv_walk08.png");
-    private final GreenfootImage LMwalk9 = new GreenfootImage("p1inv_walk09.png");
-    private final GreenfootImage LMwalk10 = new GreenfootImage("p1inv_walk10.png");
-    private final GreenfootImage LMwalk11 = new GreenfootImage("p1inv_walk10.png");*/
     int level;
     private int speed = 3;
     private int frame;
@@ -45,8 +17,10 @@ public class Hero extends Mover {
     private boolean Kijkenrechts;
     private boolean isKeyPressed;
     private boolean touchedKey = false;
-    private boolean YellowKey = false;
+    private boolean Yellowkey = false;
     private boolean Bluekey = false;
+    private boolean Redkey = false;
+    private boolean Greenkey = false;
     private int blueCoin = 0;
     private int greenCoin = 0;
     private int pinkCoin = 0;
@@ -54,6 +28,7 @@ public class Hero extends Mover {
     private int velocity = 0;
     int waardeCoin = 1;
     int sterren;
+    ScorenBord sb;
     
     
 
@@ -67,45 +42,13 @@ public class Hero extends Mover {
         
         lopen = false;
         Kijkenrechts = true;
-
-       /* RMidle.scale(70, 100);
-        RMjump.scale(70, 100);
-        RMwalk1.scale(70, 100);
-        RMwalk2.scale(70, 100);
-        RMwalk3.scale(70, 100);
-        RMwalk4.scale(70, 100);
-        RMwalk5.scale(70, 100);
-        RMwalk6.scale(70, 100);
-        RMwalk7.scale(70, 100);
-        RMwalk8.scale(70, 100);
-        RMwalk9.scale(70, 100);
-        RMwalk10.scale(70, 100);
-        RMwalk11.scale(70, 100);
-
-        LMidle.scale(70, 100);
-        LMjump.scale(70, 100);
-        LMwalk1.scale(70, 100);
-        LMwalk2.scale(70, 100);
-        LMwalk3.scale(70, 100);
-        LMwalk4.scale(70, 100);
-        LMwalk5.scale(70, 100);
-        LMwalk6.scale(70, 100);
-        LMwalk7.scale(70, 100);
-        LMwalk8.scale(70, 100);
-        LMwalk9.scale(70, 100);
-        LMwalk10.scale(70, 100);
-        LMwalk11.scale(70, 100);*/
-
     }
     
-    Scoren scoren;
+    
 
     @Override
     public void act() {
-        if(scoren == null) {
-            scoren = new Scoren();
-            getWorld().addObject(new Scoren(), -50, -50);
-        }
+
         
         getSter();
         Deur();
@@ -152,18 +95,37 @@ public class Hero extends Mover {
         if(isTouching(Ster.class)) {
             Ster ++;
             removeTouching(Ster.class);
+          //     sb.SterHud();
         }
     }
     public void yellowKey() {
         if(isTouching(YellowKey.class)) {
-            YellowKey = true;
+            Yellowkey = true;
             removeTouching(YellowKey.class);
+         //   sb.YellowKeyHud();
         }
     }
     public void blueKey() {
         if(isTouching(Bluekey.class)) {
             Bluekey = true;
             removeTouching(Bluekey.class);
+         //   sb.BlueKeyHud();
+            
+        }
+    }
+    public void redKey() {
+        if(isTouching(Redkey.class)) {
+            Bluekey = true;
+            removeTouching(Redkey.class);
+         //   sb.RedKeyHud();
+            
+        }
+    }
+        public void Greenkey() {
+        if(isTouching(Greenkey.class)) {
+            Bluekey = true;
+            removeTouching(Greenkey.class);
+         //   sb.GreenKeyHud();
             
         }
     }
@@ -293,7 +255,7 @@ public class Hero extends Mover {
         } else if (frame == 11) {
             setImage("p"+waardeCoin+"inv_walk10.png");
         } else if (frame == 12) {
-            setImage("p"+waardeCoin+"inv_walk10.png");*/
+            setImage("p"+waardeCoin+"inv_walk11.png");*/
             frame = 1;
             return;
         }
@@ -318,7 +280,7 @@ public class Hero extends Mover {
     }
 
     public void Deur() {
-        if (isTouching(Deur.class) && YellowKey && Ster >= 2) {
+        if (isTouching(Deur.class) && Yellowkey && Ster >= 2) {
             Greenfoot.setWorld(new Lvl2());
         }
     }
@@ -327,6 +289,7 @@ public class Hero extends Mover {
            
            if (isTouching(Bluelock.class) && Bluekey) {
             removeTouching(Bluelock.class);
+            //sb.updateKeyBlue();
             //world.removeObject(this);
         }
         

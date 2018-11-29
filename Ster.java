@@ -14,14 +14,7 @@ public class Ster extends Mover {
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
     public void act() {
-      for (Actor hero : getIntersectingObjects(Hero.class)){
-          if (hero != null) {
-              Hero h = (Hero)hero;
-              h.Sterrenteller(ster);
-              getWorld().removeObject(this);
-             
-       }    
-      }
+
         applyVelocity();
     }
 }
