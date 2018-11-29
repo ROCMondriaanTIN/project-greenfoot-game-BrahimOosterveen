@@ -11,7 +11,7 @@ public class Hero extends Mover {
     private final double acc;
     private final double drag;
 
-    private final GreenfootImage RMidle = new GreenfootImage("p123.png");
+    /*private final GreenfootImage RMidle = new GreenfootImage("p123.png");
     private final GreenfootImage RMjump = new GreenfootImage("p1_jump.png");
     private final GreenfootImage RMwalk1 = new GreenfootImage("p1_walk01.png");
     private final GreenfootImage RMwalk2 = new GreenfootImage("p1_walk02.png");
@@ -37,7 +37,7 @@ public class Hero extends Mover {
     private final GreenfootImage LMwalk8 = new GreenfootImage("p1inv_walk08.png");
     private final GreenfootImage LMwalk9 = new GreenfootImage("p1inv_walk09.png");
     private final GreenfootImage LMwalk10 = new GreenfootImage("p1inv_walk10.png");
-    private final GreenfootImage LMwalk11 = new GreenfootImage("p1inv_walk01.png");
+    private final GreenfootImage LMwalk11 = new GreenfootImage("p1inv_walk10.png");*/
     int level;
     private int speed = 3;
     private int frame;
@@ -47,8 +47,13 @@ public class Hero extends Mover {
     private boolean touchedKey = false;
     private boolean YellowKey = false;
     private boolean Bluekey = false;
+    private int blueCoin = 0;
+    private int greenCoin = 0;
+    private int pinkCoin = 0;
     public int Ster = 0;
     private int velocity = 0;
+    int waardeCoin = 1;
+    int sterren;
     
     
 
@@ -59,11 +64,11 @@ public class Hero extends Mover {
         drag = 0.8;
         setImage("p123.png");
         this.level = level;
-        setImage(RMidle);
+        
         lopen = false;
         Kijkenrechts = true;
 
-        RMidle.scale(70, 100);
+       /* RMidle.scale(70, 100);
         RMjump.scale(70, 100);
         RMwalk1.scale(70, 100);
         RMwalk2.scale(70, 100);
@@ -89,18 +94,28 @@ public class Hero extends Mover {
         LMwalk8.scale(70, 100);
         LMwalk9.scale(70, 100);
         LMwalk10.scale(70, 100);
-        LMwalk11.scale(70, 100);
+        LMwalk11.scale(70, 100);*/
 
     }
+    
+    Scoren scoren;
 
     @Override
     public void act() {
+        if(scoren == null) {
+            scoren = new Scoren();
+            getWorld().addObject(new Scoren(), -50, -50);
+        }
+        
         getSter();
         Deur();
         yellowKey();
         blueKey();
         Lock();
         handleInput();
+        blueCoin();
+        greenCoin();
+        pinkCoin();
 
         checkKeys();
         onGround();
@@ -149,7 +164,29 @@ public class Hero extends Mover {
         if(isTouching(Bluekey.class)) {
             Bluekey = true;
             removeTouching(Bluekey.class);
+            
         }
+    }
+    
+        public void blueCoin() {
+        if(isTouching(Bluecoin.class)) {
+            waardeCoin = 2;
+            removeTouching(Bluecoin.class);
+        }
+    }
+    
+            public void greenCoin() {
+        if(isTouching(Greencoin.class)) {
+            waardeCoin = 1;
+            removeTouching(Greencoin.class);
+        }
+    }
+    
+    public void pinkCoin() {
+         if(isTouching(Pinkcoin.class)) {
+            waardeCoin = 3;
+            removeTouching(Pinkcoin.class);
+         }
     }
 
     public void checkKeys() {
@@ -178,7 +215,7 @@ public class Hero extends Mover {
     }
 
     public void handleInput() {
-        if (Greenfoot.isKeyDown("space") && onGround() == true) {
+        if (Greenfoot.isKeyDown("w") && onGround() == true) {
             velocityY = -15;
         }
         if (Greenfoot.isKeyDown("a")) {
@@ -201,29 +238,29 @@ public class Hero extends Mover {
         Kijkenrechts = true;
         frame++;
         if (frame == 1) {
-            setImage(RMidle);
+            setImage("p123.png");
         } else if (frame == 2) {
-            setImage(RMwalk1);
+            setImage("p"+waardeCoin+"_walk01.png");
         } else if (frame == 3) {
-            setImage(RMwalk2);
+            setImage("p"+waardeCoin+"_walk02.png");
         } else if (frame == 4) {
-            setImage(RMwalk3);
+            setImage("p"+waardeCoin+"_walk03.png");
         } else if (frame == 5) {
-            setImage(RMwalk4);
+            setImage("p"+waardeCoin+"_walk04.png");
         } else if (frame == 6) {
-            setImage(RMwalk5);
+            setImage("p"+waardeCoin+"_walk05.png");
         } else if (frame == 7) {
-            setImage(RMwalk6);
+            setImage("p"+waardeCoin+"_walk06.png");
         } else if (frame == 8) {
-            setImage(RMwalk7);
-        } else if (frame == 9) {
-            setImage(RMwalk8);
+            setImage("p"+waardeCoin+"_walk07.png");
+       /* } else if (frame == 9) {
+            setImage("p"+waardeCoin+"_walk08.png");
         } else if (frame == 10) {
-            setImage(RMwalk9);
+            setImage("p"+waardeCoin+"_walk09.png");
         } else if (frame == 11) {
-            setImage(RMwalk10);
+            setImage("p"+waardeCoin+"_walk10.png");
         } else if (frame == 12) {
-            setImage(RMwalk11);
+            setImage("p"+waardeCoin+"_walk11.png");*/
             frame = 1;
             return;
         }
@@ -234,29 +271,29 @@ public class Hero extends Mover {
         Kijkenrechts = false;
         frame++;
         if (frame == 1) {
-            setImage(LMidle);
+            setImage("p"+waardeCoin+"inv.png");
         } else if (frame == 2) {
-            setImage(LMwalk1);
+            setImage("p"+waardeCoin+"inv_walk01.png");
         } else if (frame == 3) {
-            setImage(LMwalk2);
+            setImage("p"+waardeCoin+"inv_walk02.png");
         } else if (frame == 4) {
-            setImage(LMwalk3);
+            setImage("p"+waardeCoin+"inv_walk03.png");
         } else if (frame == 5) {
-            setImage(LMwalk4);
+            setImage("p"+waardeCoin+"inv_walk04.png");
         } else if (frame == 6) {
-            setImage(LMwalk5);
+            setImage("p"+waardeCoin+"inv_walk05.png");
         } else if (frame == 7) {
-            setImage(LMwalk6);
+            setImage("p"+waardeCoin+"inv_walk06.png");
         } else if (frame == 8) {
-            setImage(LMwalk7);
-        } else if (frame == 9) {
-            setImage(LMwalk8);
+            setImage("p"+waardeCoin+"inv_walk07.png");
+      /*  } else if (frame == 9) {
+            setImage("p"+waardeCoin+"inv_walk08.png");
         } else if (frame == 10) {
-            setImage(LMwalk9);
+            setImage("p"+waardeCoin+"inv_walk09.png");
         } else if (frame == 11) {
-            setImage(LMwalk10);
+            setImage("p"+waardeCoin+"inv_walk10.png");
         } else if (frame == 12) {
-            setImage(LMwalk11);
+            setImage("p"+waardeCoin+"inv_walk10.png");*/
             frame = 1;
             return;
         }
@@ -265,19 +302,19 @@ public class Hero extends Mover {
     public void stoplopen() {
         lopen = false;
         if (Kijkenrechts) {
-            setImage(RMidle);
+            setImage("p"+waardeCoin+"_stand.png");
         } else {
-            setImage(LMidle);
+            setImage("p"+waardeCoin+"_invstand.png");
         }
-    }
-    public void Jumpani(){
+    
+    /*public void Jumpani(){
        velocity = 0;
        if (Kijkenrechts) {
             setImage(RMjump);
         } else {
             setImage(LMjump);
        
-     }
+     }*/
     }
 
     public void Deur() {
@@ -294,6 +331,12 @@ public class Hero extends Mover {
         }
         
     }
+    
+    public int Sterrenteller(int ster){
+    sterren = sterren + ster;
+    getWorld().showText("Sterren: " + sterren, 100, 100);
+    return sterren;
+}
 }
 
 

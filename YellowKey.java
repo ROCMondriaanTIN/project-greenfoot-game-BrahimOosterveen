@@ -15,8 +15,8 @@ public class YellowKey extends Mover
      */
    public void act() 
     {
-      for (Actor enemy : getIntersectingObjects(Hero.class)){
-          if (enemy != null) {
+      for (Actor Yellow : getIntersectingObjects(Hero.class)){
+          if (Yellow != null) {
               getWorld().removeObject(this);
               break;
     }    

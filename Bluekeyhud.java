@@ -1,23 +1,19 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Bluelock here.
+ * Write a description of class Bluekeyhud here.
  * 
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Bluelock extends Mover
+public class Bluekeyhud extends Bluekey
 {
-
-    
     /**
-     * Act - do whatever the Bluelock wants to do. This method is called whenever
+     * Act - do whatever the Bluekeyhud wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
     public void act() 
     {
-    applyVelocity();
-   
-    
+        // Add your action code here.
     }    
 }
