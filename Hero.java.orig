@@ -1,6 +1,6 @@
 
 import greenfoot.*;
-import java.util.List;
+
 /**
  *
  * @author R. Springer
@@ -17,11 +17,10 @@ public class Hero extends Mover {
     private boolean Kijkenrechts;
     private boolean isKeyPressed;
     private boolean touchedKey = false;
-    private boolean YellowKey = false;
-    private boolean BlueKey = false;
+    private boolean Yellowkey = false;
+    private boolean Bluekey = false;
     private boolean Redkey = false;
-    private boolean GreenKey = false;
-    private boolean Diamand = false;
+    private boolean Greenkey = false;
     private int blueCoin = 0;
     private int greenCoin = 0;
     private int pinkCoin = 0;
@@ -29,8 +28,9 @@ public class Hero extends Mover {
     private int velocity = 0;
     int waardeCoin = 1;
     int sterren;
-    public boolean isSolid = true;
     ScorenBord sb;
+    
+    
 
     public Hero(int level) {
         super();
@@ -39,25 +39,22 @@ public class Hero extends Mover {
         drag = 0.8;
         setImage("p123.png");
         this.level = level;
-
+        
         lopen = false;
         Kijkenrechts = true;
     }
+    
+    
 
     @Override
     public void act() {
-        if (sb == null) {
-            sb = new ScorenBord();
-            getWorld().addObject(sb, -10, -10);
-        }
 
+        
         getSter();
         Deur();
         yellowKey();
         blueKey();
-        greenKey();
-        redKey();
-        diaMand();
+        Lock();
         handleInput();
         blueCoin();
         greenCoin();
@@ -65,8 +62,8 @@ public class Hero extends Mover {
 
         checkKeys();
         onGround();
-        
         //removeLock();
+        
 
         velocityX *= drag;
         velocityY += acc;
@@ -91,95 +88,70 @@ public class Hero extends Mover {
                 break;
             }
         }
-    }
-    public void removelock()
-        {
-        for (Actor BlueLock : getIntersectingObjects(BlueLock.class)) 
-            if (BlueLock != null && BlueKey) {
-                
-                getWorld().removeObject(BlueLock);
-                break;
 
-           }
-    }     
-         
-      
+    }
     
-
     public void getSter() {
-        if (isTouching(Ster.class)) {
-            //if (Ster < 3);
-            Ster++;
+        if(isTouching(Ster.class)) {
+            Ster ++;
             removeTouching(Ster.class);
-            sb.SterHud();
+          //     sb.SterHud();
         }
     }
-
     public void yellowKey() {
-        if (isTouching(YellowKey.class)) {
-            YellowKey = true;
+        if(isTouching(YellowKey.class)) {
+            Yellowkey = true;
             removeTouching(YellowKey.class);
-            sb.YellowKeyHud();
+         //   sb.YellowKeyHud();
         }
     }
-
     public void blueKey() {
-        if (isTouching(BlueKey.class)) {
-            BlueKey = true;
-            removeTouching(BlueKey.class);
-            sb.BlueKeyHud();
-
+        if(isTouching(Bluekey.class)) {
+            Bluekey = true;
+            removeTouching(Bluekey.class);
+         //   sb.BlueKeyHud();
+            
         }
     }
-
     public void redKey() {
-        if (isTouching(RedKey.class)) {
-            Redkey = true;
-            removeTouching(RedKey.class);
-            sb.RedKeyHud();
-
+        if(isTouching(Redkey.class)) {
+            Bluekey = true;
+            removeTouching(Redkey.class);
+         //   sb.RedKeyHud();
+            
         }
     }
-
-    public void greenKey() {
-        if (isTouching(GreenKey.class)) {
-            GreenKey = true;
-            removeTouching(GreenKey.class);
-            sb.GreenKeyHud();
-
+        public void Greenkey() {
+        if(isTouching(Greenkey.class)) {
+            Bluekey = true;
+            removeTouching(Greenkey.class);
+         //   sb.GreenKeyHud();
+            
         }
     }
-   public void diaMand() {
-        if (isTouching(Diamand.class)) {
-            Diamand = true;
-            removeTouching(Diamand.class);
-            sb.DiamandHud();
-
-        }
-    }
-
- 
-    public void blueCoin() {
-        if (isTouching(Bluecoin.class)) {
+    
+        public void blueCoin() {
+        if(isTouching(Bluecoin.class)) {
             waardeCoin = 2;
             removeTouching(Bluecoin.class);
         }
     }
-
-    public void greenCoin() {
-        if (isTouching(Greencoin.class)) {
+    
+            public void greenCoin() {
+        if(isTouching(Greencoin.class)) {
             waardeCoin = 1;
             removeTouching(Greencoin.class);
         }
     }
-
+    
     public void pinkCoin() {
-        if (isTouching(Pinkcoin.class)) {
+         if(isTouching(Pinkcoin.class)) {
             waardeCoin = 3;
             removeTouching(Pinkcoin.class);
-        }
+         }
     }
 
+<<<<<<< HEAD
     public void checkKeys() {
         isKeyPressed = false;
         if (Greenfoot.isKeyDown("d") && Greenfoot.isKeyDown("a")) {
@@ -196,6 +168,11 @@ public class Hero extends Mover {
         }
         if (!(isKeyPressed)) {
             stoplopen();
+=======
+    public void handleInput() {
+        if (Greenfoot.isKeyDown("w")) {
+            velocityY = -20;
+>>>>>>> 4372fff5ea53a9c16ee13c8083969eac7aeee2f9
         }
     }
 
@@ -231,20 +208,20 @@ public class Hero extends Mover {
         if (frame == 1) {
             setImage("p123.png");
         } else if (frame == 2) {
-            setImage("p" + waardeCoin + "_walk01.png");
+            setImage("p"+waardeCoin+"_walk01.png");
         } else if (frame == 3) {
-            setImage("p" + waardeCoin + "_walk02.png");
+            setImage("p"+waardeCoin+"_walk02.png");
         } else if (frame == 4) {
-            setImage("p" + waardeCoin + "_walk03.png");
+            setImage("p"+waardeCoin+"_walk03.png");
         } else if (frame == 5) {
-            setImage("p" + waardeCoin + "_walk04.png");
+            setImage("p"+waardeCoin+"_walk04.png");
         } else if (frame == 6) {
-            setImage("p" + waardeCoin + "_walk05.png");
+            setImage("p"+waardeCoin+"_walk05.png");
         } else if (frame == 7) {
-            setImage("p" + waardeCoin + "_walk06.png");
+            setImage("p"+waardeCoin+"_walk06.png");
         } else if (frame == 8) {
-            setImage("p" + waardeCoin + "_walk07.png");
-            /* } else if (frame == 9) {
+            setImage("p"+waardeCoin+"_walk07.png");
+       /* } else if (frame == 9) {
             setImage("p"+waardeCoin+"_walk08.png");
         } else if (frame == 10) {
             setImage("p"+waardeCoin+"_walk09.png");
@@ -262,22 +239,22 @@ public class Hero extends Mover {
         Kijkenrechts = false;
         frame++;
         if (frame == 1) {
-            setImage("p" + waardeCoin + "inv.png");
+            setImage("p"+waardeCoin+"inv.png");
         } else if (frame == 2) {
-            setImage("p" + waardeCoin + "inv_walk01.png");
+            setImage("p"+waardeCoin+"inv_walk01.png");
         } else if (frame == 3) {
-            setImage("p" + waardeCoin + "inv_walk02.png");
+            setImage("p"+waardeCoin+"inv_walk02.png");
         } else if (frame == 4) {
-            setImage("p" + waardeCoin + "inv_walk03.png");
+            setImage("p"+waardeCoin+"inv_walk03.png");
         } else if (frame == 5) {
-            setImage("p" + waardeCoin + "inv_walk04.png");
+            setImage("p"+waardeCoin+"inv_walk04.png");
         } else if (frame == 6) {
-            setImage("p" + waardeCoin + "inv_walk05.png");
+            setImage("p"+waardeCoin+"inv_walk05.png");
         } else if (frame == 7) {
-            setImage("p" + waardeCoin + "inv_walk06.png");
+            setImage("p"+waardeCoin+"inv_walk06.png");
         } else if (frame == 8) {
-            setImage("p" + waardeCoin + "inv_walk07.png");
-            /*  } else if (frame == 9) {
+            setImage("p"+waardeCoin+"inv_walk07.png");
+      /*  } else if (frame == 9) {
             setImage("p"+waardeCoin+"inv_walk08.png");
         } else if (frame == 10) {
             setImage("p"+waardeCoin+"inv_walk09.png");
@@ -293,12 +270,12 @@ public class Hero extends Mover {
     public void stoplopen() {
         lopen = false;
         if (Kijkenrechts) {
-            setImage("p" + waardeCoin + "_stand.png");
+            setImage("p"+waardeCoin+"_stand.png");
         } else {
-            setImage("p" + waardeCoin + "_invstand.png");
+            setImage("p"+waardeCoin+"_invstand.png");
         }
-
-        /*public void Jumpani(){
+    
+    /*public void Jumpani(){
        velocity = 0;
        if (Kijkenrechts) {
             setImage(RMjump);
@@ -309,21 +286,26 @@ public class Hero extends Mover {
     }
 
     public void Deur() {
-        if (isTouching(Deur.class) && YellowKey && Ster >= 2) {
+        if (isTouching(Deur.class) && Yellowkey && Ster >= 2) {
             Greenfoot.setWorld(new Lvl2());
         }
     }
-
-
-
-    public int Sterrenteller(int ster) {
-        sterren = sterren + ster;
-        getWorld().showText("Sterren: " + sterren, 100, 100);
-        return sterren;
-    }
     public void Lock(){
-    if (isTouching(BlueLock.class) && BlueKey) {
-            removeTouching(BlueLock.class);
+    
+           
+           if (isTouching(Bluelock.class) && Bluekey) {
+            removeTouching(Bluelock.class);
+            //sb.updateKeyBlue();
+            //world.removeObject(this);
+        }
+        
     }
-   }
+    
+    public int Sterrenteller(int ster){
+    sterren = sterren + ster;
+    getWorld().showText("Sterren: " + sterren, 100, 100);
+    return sterren;
 }
+}
+
+

@@ -1,12 +1,12 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Greenkey here.
+ * Write a description of class BlueKey here.
  * 
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Greenkey extends Mover
+public class BlueKey extends Mover
 {
     /**
      * Act - do whatever the Greenkey wants to do. This method is called whenever
@@ -14,6 +14,12 @@ public class Greenkey extends Mover
      */
     public void act() 
     {
-        // Add your action code here.
+             for (Actor Blue : getIntersectingObjects(Hero.class)){
+          if (Blue != null) {
+              getWorld().removeObject(this);
+              break;
+    }    
+   }
+   applyVelocity();
     }    
 }

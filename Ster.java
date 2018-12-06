@@ -8,13 +8,18 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @version (a version number or a date)
  */
 public class Ster extends Mover {
-    private int ster = 1;
+  
     /**
      * Act - do whatever the Ster wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
     public void act() {
-
-        applyVelocity();
+             for (Actor Ster : getIntersectingObjects(Hero.class)){
+          if (Ster != null) {
+              getWorld().removeObject(this);
+              break;
+    }    
+   }
+   applyVelocity();
     }
 }

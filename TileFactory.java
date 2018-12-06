@@ -400,19 +400,19 @@ public class TileFactory {
              tile.isSolid = false;
              break;
           case 96:
-             tile = new Tile("lock_blue.png", TileEngine.TILE_WIDTH, TileEngine.TILE_HEIGHT);
+             tile = new TileExtended("lock_blue.png", TileEngine.TILE_WIDTH, TileEngine.TILE_HEIGHT, "Blue");
              tile.isSolid = true;
              break;
           case 97:
-             tile = new Tile("lock_green.png", TileEngine.TILE_WIDTH, TileEngine.TILE_HEIGHT);
+             tile = new TileExtended("lock_green.png", TileEngine.TILE_WIDTH, TileEngine.TILE_HEIGHT, "Green");
              tile.isSolid = true;
              break;
           case 98:
-             tile = new Tile("lock_red.png", TileEngine.TILE_WIDTH, TileEngine.TILE_HEIGHT);
+             tile = new TileExtended("lock_red.png", TileEngine.TILE_WIDTH, TileEngine.TILE_HEIGHT, "Red");
              tile.isSolid = true;
              break;
           case 99:
-             tile = new Tile("lock_yellow.png", TileEngine.TILE_WIDTH, TileEngine.TILE_HEIGHT);
+             tile = new TileExtended("lock_yellow.png", TileEngine.TILE_WIDTH, TileEngine.TILE_HEIGHT, "Yellow");
              tile.isSolid = true;
              break;
           case 100:

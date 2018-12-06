@@ -8,7 +8,6 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class YellowKey extends Mover
 {
-   private boolean YellowKey = false;
     /**
      * Act - do whatever the YellowKey wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.

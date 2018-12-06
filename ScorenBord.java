@@ -10,10 +10,10 @@ public class ScorenBord extends Mover
 {
     public boolean Greenkey = false;
     public boolean Bluekey = false;
-    public boolean Redkey = false;
-    public boolean Yellowkey = false;
+    public boolean RedKey = false;
+    public boolean YellowKey = false;
     public int ster = 1;
-    public boolean diamant = false;
+    public boolean diamand = false;
     /**
      * Act - do whatever the ScorenBord wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
@@ -26,42 +26,44 @@ public class ScorenBord extends Mover
     
     public void BlueKeyHud() {
         Bluekey = true;
-        getWorld().addObject(new BlueKeyHud(), 400, 1000);
+        getWorld().addObject(new BlueKeyHud(), 50, 750);
     }
     public void GreenKeyHud() {
         Greenkey = true;
-        getWorld().addObject(new GreenKeyHud(), 100, 200);
+        getWorld().addObject(new GreenKeyHud(), 100, 750);
     }
         public void RedKeyHud() {
-        Greenkey = true;
-        getWorld().addObject(new RedKeyHud(), 100,300);
+        RedKey = true;
+        getWorld().addObject(new RedKeyHud(), 150, 750);
     }
         public void YellowKeyHud() {
-        Greenkey = true;
-        getWorld().addObject(new YellowKeyHud(), 100, 400);
+        YellowKey = true;
+        getWorld().addObject(new YellowKeyHud(), 200, 750);
     }
     
     public void DiamandHud() {
-        diamant = true;
-        getWorld().addObject(new DiamandHud(), 100, 500);
+        diamand = true;
+        getWorld().addObject(new DiamandHud(), 900, 750);
     }
     
-   /* public void SterHud() {
+ 
+    
+    public void SterHud() {
         switch (ster) {
             case 1:
                 ster++;
-                getWorld().addObject(new SterHud(false), 100,600);
+                getWorld().addObject(new SterHud(), 820,100);
                 break;
             case 2:
                 ster++;
-                getWorld().addObject(new SterHud(false), 100, 700);
+                getWorld().addObject(new SterHud(), 890, 100);
                 break;
             case 3:
                 ster++;
-                getWorld().addObject(new SterHud(true), 100, 800);
+                getWorld().addObject(new SterHud(), 960, 100);
                 break;
             default:
                 ster = 0;
     }    
-}*/
+}
 }
