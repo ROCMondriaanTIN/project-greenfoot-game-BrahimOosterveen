@@ -14,12 +14,12 @@ public class Ster extends Mover {
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
     public void act() {
-             for (Actor Ster : getIntersectingObjects(Hero.class)){
+             /*for (Actor Ster : getIntersectingObjects(Hero.class)){
           if (Ster != null) {
               getWorld().removeObject(this);
               break;
-    }    
-   }
+    }  
+   }*/ 
    applyVelocity();
     }
 }

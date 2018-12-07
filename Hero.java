@@ -92,6 +92,7 @@ public class Hero extends Mover {
                 break;
             }
         }
+        Platform();
     }
 
     // public void removelock()
@@ -102,6 +103,15 @@ public class Hero extends Mover {
     // break;
     // }
     // }     
+    public void Platform(){
+        if (isTouching(Platform.class)&&onPlatform() == true) {
+            velocityY = -2;
+            if (Greenfoot.isKeyDown("w")&&onPlatform() == true) {
+                velocityY = -14;
+            }
+        }
+    }
+
     public void getSter() {
         if (isTouching(Ster.class)) {
             //if (Ster < 3);
@@ -204,6 +214,14 @@ public class Hero extends Mover {
         return (tile1 != null && tile1.isSolid) || (tile2 != null && tile2.isSolid);
     }
 
+    public boolean onPlatform() {
+        Actor underLeft = getOneObjectAtOffset(-getImage().getWidth() / 2, getImage().getHeight() / 2, Platform.class);
+        Actor underRight = getOneObjectAtOffset(getImage().getWidth() / 2, getImage().getHeight() / 2, Platform.class);
+        Platform tile1 = (Platform) underLeft;
+        Platform tile2 = (Platform) underRight;
+
+        return (tile1 != null) || (tile2 != null);
+    }
     public void handleInput() {
         if (Greenfoot.isKeyDown("w") && onGround() == true) {
             if (waardeCoin == 1) {
@@ -217,6 +235,7 @@ public class Hero extends Mover {
             }
 
         }
+        
         if (Greenfoot.isKeyDown("a")) {
             if (waardeCoin == 1) {
                 velocityX = -4;
@@ -364,4 +383,5 @@ public class Hero extends Mover {
         }
     }
 
+   
 }

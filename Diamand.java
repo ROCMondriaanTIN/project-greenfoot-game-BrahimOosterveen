@@ -14,12 +14,12 @@ public class Diamand extends Mover
      */
     public void act() 
     {
-             for (Actor Diamand : getIntersectingObjects(Hero.class)){
+             /*for (Actor Diamand : getIntersectingObjects(Hero.class)){
           if (Diamand != null) {
               getWorld().removeObject(this);
               break;
     }    
-   }
+   }*/
    applyVelocity();
     }    
 }

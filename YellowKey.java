@@ -14,12 +14,12 @@ public class YellowKey extends Mover
      */
    public void act() 
     {
-      for (Actor Yellow : getIntersectingObjects(Hero.class)){
+      /*for (Actor Yellow : getIntersectingObjects(Hero.class)){
           if (Yellow != null) {
               getWorld().removeObject(this);
               break;
     }    
-   }
+   }*/
    applyVelocity();
  }
 }

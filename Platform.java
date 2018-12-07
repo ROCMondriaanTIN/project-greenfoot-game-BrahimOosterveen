@@ -1,9 +1,56 @@
-import greenfoot.*;  // (World, Actor, GreenfootImage, and Greenfoot)
+import greenfoot.*;
 
 /**
- * A cloud that moves back and forth between two defined points.
+ *
+ * @author R. Springer
  */
-public class Platform extends Mover
-{
- 
+public class Platform extends Mover {
+
+    
+    private int walkRange;
+    private int xMin;
+    private int xMax;
+    private boolean firstAct;
+    private int speed;
+    private boolean isSolid;
+    public Platform() {
+        super();
+        setImage("PlatformGo.png");
+        //getImage().mirrorHorizontally();
+        walkRange = 140;
+        firstAct = true;
+        speed = 1;
+        isSolid = true;
+    }
+
+    @Override
+    public void act() {
+        
+        
+        int x = getX();
+        int y = getY();
+
+        if (firstAct) {
+            firstAct = false;
+            xMin = x - walkRange / 2;
+            xMax = x + walkRange / 2;
+        }
+
+        velocityX = speed;
+        applyVelocity();
+        if (getX() >= xMax) {
+            speed *= -1;
+            x = xMax;
+            
+
+            //getImage().mirrorHorizontally();
+        } else if (getX() <= xMin) {
+            speed *= -1;
+            x = xMin;
+            
+            //getImage().mirrorHorizontally();
+        }
+        
+    }
+    
 }
