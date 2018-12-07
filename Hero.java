@@ -1,6 +1,7 @@
 
 import greenfoot.*;
 import java.util.List;
+
 /**
  *
  * @author R. Springer
@@ -19,7 +20,7 @@ public class Hero extends Mover {
     private boolean touchedKey = false;
     private boolean YellowKey = false;
     private boolean BlueKey = false;
-    private boolean Redkey = false;
+    private boolean RedKey = false;
     private boolean GreenKey = false;
     private boolean Diamand = false;
     private int blueCoin = 0;
@@ -62,10 +63,10 @@ public class Hero extends Mover {
         blueCoin();
         greenCoin();
         pinkCoin();
-
+        unlock();
         checkKeys();
         onGround();
-        
+        // lock();
         //removeLock();
 
         velocityX *= drag;
@@ -92,20 +93,15 @@ public class Hero extends Mover {
             }
         }
     }
-    public void removelock()
-        {
-        for (Actor BlueLock : getIntersectingObjects(BlueLock.class)) 
-            if (BlueLock != null && BlueKey) {
-                
-                getWorld().removeObject(BlueLock);
-                break;
 
-           }
-    }     
-         
-      
-    
-
+    // public void removelock()
+    // {
+    // for (Actor BlueLock : getIntersectingObjects(BlueLock.class)) 
+    // if (BlueLock != null && BlueKey) {
+    // getWorld().removeObject(BlueLock);
+    // break;
+    // }
+    // }     
     public void getSter() {
         if (isTouching(Ster.class)) {
             //if (Ster < 3);
@@ -134,7 +130,7 @@ public class Hero extends Mover {
 
     public void redKey() {
         if (isTouching(RedKey.class)) {
-            Redkey = true;
+            RedKey = true;
             removeTouching(RedKey.class);
             sb.RedKeyHud();
 
@@ -149,7 +145,8 @@ public class Hero extends Mover {
 
         }
     }
-   public void diaMand() {
+
+    public void diaMand() {
         if (isTouching(Diamand.class)) {
             Diamand = true;
             removeTouching(Diamand.class);
@@ -158,7 +155,6 @@ public class Hero extends Mover {
         }
     }
 
- 
     public void blueCoin() {
         if (isTouching(Bluecoin.class)) {
             waardeCoin = 2;
@@ -200,19 +196,48 @@ public class Hero extends Mover {
     }
 
     public boolean onGround() {
-        Actor under = getOneObjectAtOffset(0, getHeight() / 2, Tile.class);
-        Tile tile = (Tile) under;
-        return tile != null && tile.isSolid == true;
+        Actor underLeft = getOneObjectAtOffset(-getImage().getWidth() / 2, getImage().getHeight() / 2, Tile.class);
+        Actor underRight = getOneObjectAtOffset(getImage().getWidth() / 2, getImage().getHeight() / 2, Tile.class);
+        Tile tile1 = (Tile) underLeft;
+        Tile tile2 = (Tile) underRight;
+
+        return (tile1 != null && tile1.isSolid) || (tile2 != null && tile2.isSolid);
     }
 
     public void handleInput() {
         if (Greenfoot.isKeyDown("w") && onGround() == true) {
-            velocityY = -15;
+            if (waardeCoin == 1) {
+                velocityY = -13;
+            }
+            if (waardeCoin == 2) {
+                velocityY = -16;
+            }
+            if (waardeCoin == 3) {
+                velocityY = -10;
+            }
+
         }
         if (Greenfoot.isKeyDown("a")) {
-            velocityX = -4;
+            if (waardeCoin == 1) {
+                velocityX = -4;
+            }
+            if (waardeCoin == 2) {
+                velocityX = -4;
+            }
+            if (waardeCoin == 3) {
+                velocityX = -2;
+            }
         } else if (Greenfoot.isKeyDown("d")) {
-            velocityX = 4;
+            if (waardeCoin == 1) {
+                velocityX = 4;
+            }
+            if (waardeCoin == 2) {
+                velocityX = 4;
+            }
+            if (waardeCoin == 3) {
+                velocityX = 2;
+            }
+
         }
     }
 
@@ -246,11 +271,11 @@ public class Hero extends Mover {
             setImage("p" + waardeCoin + "_walk07.png");
             /* } else if (frame == 9) {
             setImage("p"+waardeCoin+"_walk08.png");
-        } else if (frame == 10) {
+            } else if (frame == 10) {
             setImage("p"+waardeCoin+"_walk09.png");
-        } else if (frame == 11) {
+            } else if (frame == 11) {
             setImage("p"+waardeCoin+"_walk10.png");
-        } else if (frame == 12) {
+            } else if (frame == 12) {
             setImage("p"+waardeCoin+"_walk11.png");*/
             frame = 1;
             return;
@@ -279,11 +304,11 @@ public class Hero extends Mover {
             setImage("p" + waardeCoin + "inv_walk07.png");
             /*  } else if (frame == 9) {
             setImage("p"+waardeCoin+"inv_walk08.png");
-        } else if (frame == 10) {
+            } else if (frame == 10) {
             setImage("p"+waardeCoin+"inv_walk09.png");
-        } else if (frame == 11) {
+            } else if (frame == 11) {
             setImage("p"+waardeCoin+"inv_walk10.png");
-        } else if (frame == 12) {
+            } else if (frame == 12) {
             setImage("p"+waardeCoin+"inv_walk11.png");*/
             frame = 1;
             return;
@@ -299,13 +324,13 @@ public class Hero extends Mover {
         }
 
         /*public void Jumpani(){
-       velocity = 0;
-       if (Kijkenrechts) {
-            setImage(RMjump);
+        velocity = 0;
+        if (Kijkenrechts) {
+        setImage(RMjump);
         } else {
-            setImage(LMjump);
-       
-     }*/
+        setImage(LMjump);
+
+        }*/
     }
 
     public void Deur() {
@@ -314,16 +339,29 @@ public class Hero extends Mover {
         }
     }
 
-
-
     public int Sterrenteller(int ster) {
         sterren = sterren + ster;
         getWorld().showText("Sterren: " + sterren, 100, 100);
         return sterren;
     }
-    public void Lock(){
-    if (isTouching(BlueLock.class) && BlueKey) {
-            removeTouching(BlueLock.class);
+
+    public void unlock() {
+        List<Lock> locks = this.getNeighbours(100, true, Lock.class);
+        if (!locks.isEmpty()) {
+            for (int i = 0; i < locks.size(); i++) {
+                if (RedKey && locks.get(i).kleur == "RED") {
+                    locks.get(i).setLocation(1000, 1000);
+                } else if (BlueKey && locks.get(i).kleur == "BLUE") {
+                    locks.get(i).setLocation(1000, 1000);
+                } else if (GreenKey && locks.get(i).kleur == "GREEN") {
+                    locks.get(i).setLocation(1000, 1000);
+                } else if (YellowKey && locks.get(i).kleur == "YELLOW") {
+                    locks.get(i).setLocation(1000, 1000);
+                } else {
+                    // System.out.println("No key.");
+                }
+            }
+        }
     }
-   }
+
 }
