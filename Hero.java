@@ -66,8 +66,7 @@ public class Hero extends Mover {
         unlock();
         checkKeys();
         onGround();
-        // lock();
-        //removeLock();
+
 
         velocityX *= drag;
         velocityY += acc;
@@ -75,10 +74,21 @@ public class Hero extends Mover {
             velocityY = gravity;
         }
         applyVelocity();
-        //slotKey();
-        //removeLock();
+
 
         for (Actor enemy : getIntersectingObjects(Enemy.class)) {
+            if (enemy != null) {
+                Greenfoot.setWorld(new Gameover(level));
+                break;
+            }
+        }
+        for (Actor enemy : getIntersectingObjects(Slijmenemy.class)) {
+            if (enemy != null) {
+                Greenfoot.setWorld(new Gameover(level));
+                break;
+            }
+        }
+        for (Actor enemy : getIntersectingObjects(Fireball.class)) {
             if (enemy != null) {
                 Greenfoot.setWorld(new Gameover(level));
                 break;
@@ -92,25 +102,15 @@ public class Hero extends Mover {
                 break;
             }
         }
-        Platform();
-    }
-
-    // public void removelock()
-    // {
-    // for (Actor BlueLock : getIntersectingObjects(BlueLock.class)) 
-    // if (BlueLock != null && BlueKey) {
-    // getWorld().removeObject(BlueLock);
-    // break;
-    // }
-    // }     
-    public void Platform(){
-        if (isTouching(Platform.class)&&onPlatform() == true) {
-            velocityY = -2;
-            if (Greenfoot.isKeyDown("w")&&onPlatform() == true) {
+        if (isTouching(Platform.class)) {
+            velocityY = -1;
+            if (Greenfoot.isKeyDown("w")){
                 velocityY = -14;
             }
         }
     }
+
+
 
     public void getSter() {
         if (isTouching(Ster.class)) {
@@ -300,6 +300,15 @@ public class Hero extends Mover {
             return;
         }
     }
+        public void customGedrag() {
+
+        if (waardeCoin == 3) {
+            GreenfootImage img = new GreenfootImage(this.getImage());
+            img.scale(40, 50);
+            setImage(img);
+        }
+    }
+
 
     public void walkLeft() {
         lopen = true;

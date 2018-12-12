@@ -33,5 +33,7 @@ public class LevelSelect extends World
         addObject(level1,335,464);
         Level2 level2 = new Level2();
         addObject(level2,542,464);
+        Level3 level3 = new Level3();
+        addObject(level3,742,465);
     }
 }

@@ -5,10 +5,10 @@
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class BlueLock extends Tile
+public class Bluelock extends Tile
 {
     public boolean isSolid = true;
-      public BlueLock(String image, int width, int heigth){
+      public Bluelock(String image, int width, int heigth){
         super(image, width, heigth);
         
     }

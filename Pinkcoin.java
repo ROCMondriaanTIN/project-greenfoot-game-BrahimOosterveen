@@ -14,12 +14,12 @@ public class Pinkcoin extends Mover
      */
     public void act() 
     {
-                     for (Actor Pinkcoin : getIntersectingObjects(Hero.class)){
-          if (Pinkcoin != null) {
-              getWorld().removeObject(this);
-              break;
-    }    
-   }
+                     // for (Actor Pinkcoin : getIntersectingObjects(Hero.class)){
+          // if (Pinkcoin != null) {
+              // getWorld().removeObject(this);
+              // break;
+    // }    
+   // }
    applyVelocity();
     }    
     }    

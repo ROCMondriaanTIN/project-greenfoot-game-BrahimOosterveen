@@ -35,5 +35,20 @@ public class Yes extends Button
             //if (Greenfoot.isKeyDown("space")) Greenfoot.setWorld(new LevelSelect());
         }
     }
+        else if (level == 3){
+        if (Greenfoot.mouseClicked(this))
+        {
+            Greenfoot.setWorld(new Wereld3());
+            //if (Greenfoot.isKeyDown("space")) Greenfoot.setWorld(new LevelSelect());
+        }
+    }
+        
+        else if (level == 4){
+        if (Greenfoot.mouseClicked(this))
+        {
+            Greenfoot.setWorld(new Wereld4());
+            //if (Greenfoot.isKeyDown("space")) Greenfoot.setWorld(new LevelSelect());
+        }
     }    
+}
 }

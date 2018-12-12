@@ -14,12 +14,12 @@ public class Greencoin extends Mover
      */
     public void act() 
     {
-                     for (Actor Greencoin : getIntersectingObjects(Hero.class)){
-          if (Greencoin != null) {
-              getWorld().removeObject(this);
-              break;
-    }    
-   }
+                     // for (Actor Greencoin : getIntersectingObjects(Hero.class)){
+          // if (Greencoin != null) {
+              // getWorld().removeObject(this);
+              // break;
+    // }    
+   // }
    applyVelocity();
     }    
     }    

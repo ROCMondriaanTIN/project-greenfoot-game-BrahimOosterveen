@@ -14,12 +14,12 @@ public class Bluecoin extends Mover
      */
     public void act() 
     {
-                      for (Actor Bluecoin : getIntersectingObjects(Hero.class)){
-          if (Bluecoin != null) {
-              getWorld().removeObject(this);
-              break;
-       }    
-      }
+                      // for (Actor Bluecoin : getIntersectingObjects(Hero.class)){
+          // if (Bluecoin != null) {
+              // getWorld().removeObject(this);
+              // break;
+       // }    
+      // }
        applyVelocity();
     }    
 }

@@ -26,7 +26,7 @@ public class ScorenBord extends Mover
     
     public void BlueKeyHud() {
         Bluekey = true;
-        getWorld().addObject(new BlueKeyHud(), 50, 750);
+        getWorld().addObject(new BlueKeyhud(), 50, 750);
     }
     public void GreenKeyHud() {
         Greenkey = true;
